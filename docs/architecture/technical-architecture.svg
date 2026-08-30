@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1280" viewBox="0 0 1600 1280">
+  <defs>
+    <style>
+      .title { font: 700 40px Arial, sans-serif; fill: #10233f; }
+      .subtitle { font: 400 20px Arial, sans-serif; fill: #52657d; }
+      .layer { font: 700 17px Arial, sans-serif; fill: #52657d; letter-spacing: 2px; }
+      .heading { font: 700 21px Arial, sans-serif; fill: #10233f; }
+      .body { font: 400 16px Arial, sans-serif; fill: #34465d; }
+      .small { font: 400 14px Arial, sans-serif; fill: #52657d; }
+      .whiteHeading { font: 700 21px Arial, sans-serif; fill: #ffffff; }
+      .whiteBody { font: 400 15px Arial, sans-serif; fill: #eaf1ff; }
+    </style>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#10233f" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#7890aa"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="1280" fill="#f5f8fc"/>
+  <text x="90" y="74" class="title">FlowSurgeon — Technical Architecture</text>
+  <text x="90" y="110" class="subtitle">One domain model, two controlled entry points: human UI and WebMCP agent tools.</text>
+
+  <text x="90" y="158" class="layer">ACTORS</text>
+  <rect x="90" y="178" width="680" height="122" rx="18" fill="#2563eb" filter="url(#shadow)"/>
+  <text x="125" y="220" class="whiteHeading">Human user</text>
+  <text x="125" y="252" class="whiteBody">Edits the canvas, protects constraints, reviews proposals</text>
+  <text x="125" y="277" class="whiteBody">and exclusively approves changes.</text>
+
+  <rect x="830" y="178" width="680" height="122" rx="18" fill="#7c3aed" filter="url(#shadow)"/>
+  <text x="865" y="220" class="whiteHeading">ChatGPT / Codex</text>
+  <text x="865" y="252" class="whiteBody">Reads the live process, runs analysis and creates pending</text>
+  <text x="865" y="277" class="whiteBody">proposals through WebMCP.</text>
+
+  <line x1="430" y1="300" x2="430" y2="348" stroke="#7890aa" stroke-width="3" marker-end="url(#arrow)"/>
+  <line x1="1170" y1="300" x2="1170" y2="348" stroke="#7890aa" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <text x="90" y="370" class="layer">PRESENTATION AND ENTRY ADAPTERS</text>
+  <rect x="90" y="390" width="1420" height="165" rx="18" fill="#ffffff" stroke="#d6e0ec" stroke-width="2" filter="url(#shadow)"/>
+  <g>
+    <rect x="120" y="420" width="250" height="54" rx="10" fill="#edf4ff"/><text x="245" y="453" class="body" text-anchor="middle">App shell</text>
+    <rect x="395" y="420" width="250" height="54" rx="10" fill="#edf4ff"/><text x="520" y="453" class="body" text-anchor="middle">Process canvas</text>
+    <rect x="670" y="420" width="250" height="54" rx="10" fill="#edf4ff"/><text x="795" y="453" class="body" text-anchor="middle">Step inspector</text>
+    <rect x="945" y="420" width="250" height="54" rx="10" fill="#edf4ff"/><text x="1070" y="453" class="body" text-anchor="middle">Proposal review</text>
+    <rect x="1220" y="420" width="260" height="54" rx="10" fill="#edf4ff"/><text x="1350" y="453" class="body" text-anchor="middle">Metrics and findings</text>
+  </g>
+  <rect x="120" y="495" width="650" height="42" rx="10" fill="#dbeafe" stroke="#2563eb"/>
+  <text x="445" y="522" class="body" text-anchor="middle">UI command adapter — human interactions</text>
+  <rect x="830" y="495" width="650" height="42" rx="10" fill="#ede9fe" stroke="#7c3aed"/>
+  <text x="1155" y="522" class="body" text-anchor="middle">WebMCP adapter — top-level JavaScript tools</text>
+
+  <line x1="800" y1="555" x2="800" y2="605" stroke="#7890aa" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <text x="90" y="628" class="layer">APPLICATION SERVICES</text>
+  <rect x="90" y="648" width="1420" height="185" rx="18" fill="#ffffff" stroke="#d6e0ec" stroke-width="2" filter="url(#shadow)"/>
+  <g>
+    <rect x="120" y="680" width="420" height="58" rx="10" fill="#f0f7ff"/><text x="330" y="705" class="heading" text-anchor="middle">Process service</text><text x="330" y="727" class="small" text-anchor="middle">Commands and queries</text>
+    <rect x="590" y="680" width="420" height="58" rx="10" fill="#f0f7ff"/><text x="800" y="705" class="heading" text-anchor="middle">Analysis service</text><text x="800" y="727" class="small" text-anchor="middle">Validation and metrics</text>
+    <rect x="1060" y="680" width="420" height="58" rx="10" fill="#f0f7ff"/><text x="1270" y="705" class="heading" text-anchor="middle">Proposal service</text><text x="1270" y="727" class="small" text-anchor="middle">Draft, review and apply</text>
+    <rect x="120" y="754" width="420" height="58" rx="10" fill="#f0f7ff"/><text x="330" y="779" class="heading" text-anchor="middle">Version service</text><text x="330" y="801" class="small" text-anchor="middle">Snapshots and restore</text>
+    <rect x="590" y="754" width="420" height="58" rx="10" fill="#f0f7ff"/><text x="800" y="779" class="heading" text-anchor="middle">Import / export</text><text x="800" y="801" class="small" text-anchor="middle">Schema-safe JSON</text>
+    <rect x="1060" y="754" width="420" height="58" rx="10" fill="#f0f7ff"/><text x="1270" y="779" class="heading" text-anchor="middle">Workspace service</text><text x="1270" y="801" class="small" text-anchor="middle">Local project catalogue</text>
+  </g>
+
+  <line x1="800" y1="833" x2="800" y2="883" stroke="#7890aa" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <text x="90" y="906" class="layer">PURE DOMAIN CORE</text>
+  <rect x="90" y="926" width="1420" height="120" rx="18" fill="#ecfdf5" stroke="#10b981" stroke-width="3" filter="url(#shadow)"/>
+  <g>
+    <text x="267" y="970" class="heading" text-anchor="middle">Process model</text><text x="267" y="997" class="small" text-anchor="middle">Nodes, edges, metadata</text>
+    <text x="622" y="970" class="heading" text-anchor="middle">Validation engine</text><text x="622" y="997" class="small" text-anchor="middle">Structural and constraint rules</text>
+    <text x="977" y="970" class="heading" text-anchor="middle">Metrics engine</text><text x="977" y="997" class="small" text-anchor="middle">Deterministic calculations</text>
+    <text x="1332" y="970" class="heading" text-anchor="middle">Patch engine</text><text x="1332" y="997" class="small" text-anchor="middle">Safe ChangeSet simulation</text>
+  </g>
+
+  <line x1="800" y1="1046" x2="800" y2="1090" stroke="#7890aa" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <text x="90" y="1110" class="layer">LOCAL INFRASTRUCTURE</text>
+  <rect x="90" y="1130" width="900" height="95" rx="18" fill="#ffffff" stroke="#d6e0ec" stroke-width="2" filter="url(#shadow)"/>
+  <text x="250" y="1170" class="heading" text-anchor="middle">IndexedDB</text><text x="250" y="1196" class="small" text-anchor="middle">Processes and versions</text>
+  <text x="540" y="1170" class="heading" text-anchor="middle">Schema migrations</text><text x="540" y="1196" class="small" text-anchor="middle">Backward-compatible storage</text>
+  <text x="830" y="1170" class="heading" text-anchor="middle">File boundary</text><text x="830" y="1196" class="small" text-anchor="middle">JSON import and export</text>
+
+  <rect x="1030" y="1130" width="480" height="95" rx="18" fill="#fff7ed" stroke="#f97316" stroke-width="3" filter="url(#shadow)"/>
+  <text x="1270" y="1165" class="heading" text-anchor="middle">Mandatory trust boundary</text>
+  <text x="1270" y="1193" class="small" text-anchor="middle">WebMCP can draft ChangeSets.</text>
+  <text x="1270" y="1214" class="small" text-anchor="middle">Only the human UI can approve and apply them.</text>
+</svg>
